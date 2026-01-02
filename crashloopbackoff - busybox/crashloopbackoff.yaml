@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: utility-worker
+spec:
+  containers:
+  - name: worker
+    image: busybox:latest
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "500m"

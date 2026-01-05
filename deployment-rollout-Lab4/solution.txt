@@ -1,1 +1,0 @@
-kubectl rollout undo deployment web-app --to-revision=1

@@ -1,0 +1,25 @@
+### To label the node
+kubectl label node node01 disktype=ssd
+
+### Remove NodeSelector from spec.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: web-priority
+  template:
+    metadata:
+      labels:
+        app: web-priority
+    spec:
+#      nodeSelector:
+#        disktype: ssd
+      containers:
+      - name: nginx
+        image: nginx:latest
+        ports:
+        - containerPort: 80

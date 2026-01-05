@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: script-checker
+spec:
+  containers:
+  - name: busybox
+    image: busybox
+    command: ["/bin/sh", "-c", "sh /scripts/check-status.sh && sleep 3600"]
+    volumeMounts:
+    - name: script-volume
+      mountPath: /scripts ### Mount it on /scripts as it is sh /scripts in command
+  volumes:
+  - name: script-volume
+    configMap:
+      name: status-script

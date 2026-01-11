@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ready-app
+  labels:
+    app: health-check
+spec:
+  containers:
+  - name: nginx
+    image: nginx:latest
+    readinessProbe:
+      httpGet:
+        path: /healthz
+        port: 80
+      initialDelaySeconds: 2
+      periodSeconds: 5

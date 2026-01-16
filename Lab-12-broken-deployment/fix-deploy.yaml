@@ -1,0 +1,17 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: savage-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: frontend-v1 # The Deployment is looking for this...
+  template:
+    metadata:
+      labels:
+        app: frontend-v1 # ERROR: But the Pods are labeled with v2, change it to v1!
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:latest
